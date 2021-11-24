@@ -8,7 +8,8 @@ steps:
     - name: dockersock
       path: /var/run/docker.sock
   commands:
-    - docker build -t sav4enk0r0man/go-api:$${VERSION} .
+    - echo $${VERSION}
+    - docker build -t sav4enk0r0man/go-api:"${VERSION}" -t sav4enk0r0man/go-api:latest .
   environment:
     VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
 
