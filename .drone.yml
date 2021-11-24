@@ -8,7 +8,7 @@ steps:
     settings:
       repo: savchenkoroman/go-api
       tags:
-        - $${VERSION}
+        - "${VERSION}"
         - "latest"
       username:
         from_secret: DOCKER_USERNAME
