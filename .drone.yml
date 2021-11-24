@@ -12,7 +12,7 @@ steps:
     - echo $${VERSION}
 #    - docker build -t sav4enk0r0man/go-api:"${VERSION}" .
   environment:
-    VERSION: master-${DRONE_COMMIT_SHA:0:8}
+    VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
 
 volumes:
 - name: dockersock
