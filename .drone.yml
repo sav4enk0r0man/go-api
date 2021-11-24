@@ -8,7 +8,7 @@ steps:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker build .
+  - docker build -t sav4enk0r0man/go-api:dev .
 
 volumes:
 - name: dockersock
