@@ -9,7 +9,8 @@ steps:
       path: /var/run/docker.sock
   commands:
     - docker build -t sav4enk0r0man/go-api:$${VERSION} -t sav4enk0r0man/go-api:latest .
-    - docker push sav4enk0r0man/go-api:$${VERSION} sav4enk0r0man/go-api:latest
+    - docker push sav4enk0r0man/go-api:$${VERSION}
+    - docker push sav4enk0r0man/go-api:latest
   environment:
     VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
 
