@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  go-api:
+    container_name: go-api
+    image: savchenkoroman/go-api:dev
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+      - "2345:2345"
+    networks:
+      - go-api-network
+  go-api-db:
+    container_name: go-api-db
+    image: postgres
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - go-api-network
+
+volumes:
+  postgres-db:
+
+networks:
+  go-api-network:
+    name: go-api-network
