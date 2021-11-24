@@ -2,13 +2,13 @@ kind: pipeline
 name: default
 
 steps:
-- name: test
+- name: build
   image: docker:dind
   volumes:
   - name: dockersock
     path: /var/run/docker.sock
   commands:
-  - docker ps -a
+  - docker build .
 
 volumes:
 - name: dockersock
