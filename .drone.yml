@@ -5,10 +5,11 @@ steps:
 - name: build
   image: docker:dind
   volumes:
-  - name: dockersock
-    path: /var/run/docker.sock
+    - name: dockersock
+      path: /var/run/docker.sock
   commands:
-  - docker build -t sav4enk0r0man/go-api:dev .
+    - export VERSION="${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:8}"
+    - docker build -t sav4enk0r0man/go-api:${VERSION} .
 
 volumes:
 - name: dockersock
