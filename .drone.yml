@@ -9,7 +9,7 @@ steps:
       path: /var/run/docker.sock
   commands:
 #    - export VERSION="${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}"
-    - echo "${VERSION}"
+    - echo $${VERSION}
 #    - docker build -t sav4enk0r0man/go-api:"${VERSION}" .
   environment:
     VERSION: "test"
