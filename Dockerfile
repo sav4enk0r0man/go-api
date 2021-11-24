@@ -26,6 +26,8 @@ FROM base AS builder
 WORKDIR /app
 
 COPY . /app
+
+RUN go get github.com/joho/godotenv && go get github.com/sav4enk0r0man/go-api/database
 RUN go mod download \
     && go mod verify
 

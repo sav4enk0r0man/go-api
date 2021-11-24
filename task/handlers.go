@@ -34,9 +34,9 @@ func (handler *TaskHandler) Create(c *fiber.Ctx) error {
 
 	if err := c.BodyParser(data); err != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"status": "error", 
-			"message": "Invalid input data", 
-			"error": err
+			"status":  "error",
+			"message": "Invalid input data",
+			"error":   err,
 		})
 	}
 
@@ -44,9 +44,9 @@ func (handler *TaskHandler) Create(c *fiber.Ctx) error {
 
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"status": 400,
+			"status":  400,
 			"message": "Failed creating task",
-			"error": err,
+			"error":   err,
 		})
 	}
 
@@ -76,34 +76,34 @@ func (handler *TaskHandler) Update(c *fiber.Ctx) error {
 
 	if err := c.BodyParser(taskData); err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"status": "error", 
-			"message": "Invalid input data", 
-			"data": err})
+			"status":  "error",
+			"message": "Invalid input data",
+			"data":    err})
 	}
 
 	task.Name = taskData.Name
 	task.Description = taskData.Description
 	task.Status = taskData.Status
 
-	task, err := handler.repository.Save(task)
+	taskSaved, err := handler.repository.Save(task)
 
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
 			"message": "Error updating task",
-			"error": err,
+			"error":   err,
 		})
 	}
 
-	return c.JSON(task)
+	return c.JSON(taskSaved)
 }
 
 func (handler *TaskHandler) Delete(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"status": 400,
+			"status":  400,
 			"message": "Task id not valid",
-			"err": err,
+			"err":     err,
 		})
 	}
 	RowsAffected := handler.repository.Delete(id)

@@ -3,9 +3,14 @@ module github.com/sav4enk0r0man/go-api
 go 1.17
 
 require (
+	github.com/jinzhu/gorm v1.9.16
+	github.com/joho/godotenv v1.4.0
+	github.com/lib/pq v1.1.1
+)
+
+require (
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/gofiber/fiber/v2 v2.22.0 // indirect
-	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/klauspost/compress v1.13.4 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
