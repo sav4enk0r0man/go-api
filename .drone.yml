@@ -4,25 +4,18 @@ name: default
 # build step
 steps:
   - name: build
-    image: docker:dind
-    volumes:
-      - name: dockersock
-        path: /var/run/docker.sock
-    commands:
-      - echo docker build -t savchenkoroman/go-api:$${VERSION} -t savchenkoroman/go-api:latest .
-    environment:
-      VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
-
-  - name: publish
     image: plugins/docker
     settings:
       repo: savchenkoroman/go-api
       tags:
+        - $${VERSION}
         - "latest"
       username:
         from_secret: DOCKER_USERNAME
       password:
         from_secret: DOCKER_PASSWORD
+    environment:
+      VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
 
 volumes:
 - name: dockersock
