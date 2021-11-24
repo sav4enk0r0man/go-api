@@ -1,6 +1,7 @@
 kind: pipeline
 name: default
 
+# build step
 steps:
 - name: build
   image: docker:dind
