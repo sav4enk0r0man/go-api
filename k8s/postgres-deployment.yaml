@@ -68,9 +68,9 @@ spec:
                 name: postgres-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgredb
+              name: go-api-db
       volumes:
-        - name: postgredb
+        - name: go-api-db
           persistentVolumeClaim:
             claimName: postgres-pv-claim
 
