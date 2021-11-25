@@ -7,13 +7,14 @@ steps:
     image: plugins/docker
     settings:
       repo: savchenkoroman/go-api
-      tags:  [ $${VERSION},"latest" ]
+      tags:  [ "${VERSION}","latest" ]
       username:
         from_secret: DOCKER_USERNAME
       password:
         from_secret: DOCKER_PASSWORD
     environment:
-      VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
+      VERSION: ${DRONE_COMMIT_SHA:0:8}
+#      VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
 
 volumes:
 - name: dockersock
