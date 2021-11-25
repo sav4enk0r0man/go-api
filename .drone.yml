@@ -27,7 +27,8 @@ steps:
       kubernetes_token:
         from_secret: K8S_TOKEN
     commands:
-      - kubectl apply -f deployment.yaml
+      - kubectl apply -f k8s/postgres-deployment
+      - kubectl apply -f k8s/deployment.yaml
 
 volumes:
 - name: dockersock
