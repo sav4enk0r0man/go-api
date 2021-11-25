@@ -3,19 +3,31 @@ name: default
 
 # build step
 steps:
-  - name: build
-    image: plugins/docker
+  # - name: build
+  #   image: plugins/docker
+  #   settings:
+  #     repo: savchenkoroman/go-api
+  #     tags: 
+  #       - ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
+  #       - latest
+  #     username:
+  #       from_secret: DOCKER_USERNAME
+  #     password:
+  #       from_secret: DOCKER_PASSWORD
+  #   environment:
+  #     VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
+
+  - name: deploy
+    image: sinlead/drone-kubectl
     settings:
-      repo: savchenkoroman/go-api
-      tags: 
-        - ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
-        - latest
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-    environment:
-      VERSION: ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
+      kubernetes_server:
+        from_secret: K8S_SERVER
+      kubernetes_cert:
+        from_secret: K8S_CERT
+      kubernetes_token:
+        from_secret: K8S_TOKEN
+    commands:
+      - kubectl get nodes -o wide
 
 volumes:
 - name: dockersock
