@@ -31,4 +31,4 @@ spec:
     spec:
       containers:
         - name: go-api
-          image: "savchenkoroman/go-api:latest"
+          image: savchenkoroman/go-api:latest
