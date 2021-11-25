@@ -1,17 +1,16 @@
 ---
 apiVersion: v1
-kind: Service
+kind: ConfigMap
 metadata:
-  name: "go-api-svc"
-  namespace: "default"
-spec:
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: LoadBalancer
-  selector:
-    app: "go-api"
+  name: go-api-config
+data:
+  .env: |
+    DB_HOST=postgres
+    DB_PORT=5432
+    DB_USER=postgres
+    DB_PASSWORD=postgres
+    DB_NAME=go-api
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,3 +31,24 @@ spec:
       containers:
         - name: go-api
           image: savchenkoroman/go-api:latest
+          volumeMounts:
+            - name: env-volume
+              mountPath: /app/.env
+      volumes:
+        - name: env-volume
+          configMap:
+            name: go-api-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "go-api-svc"
+  namespace: "default"
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+  selector:
+    app: "go-api"

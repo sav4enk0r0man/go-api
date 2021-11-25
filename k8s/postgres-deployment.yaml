@@ -38,7 +38,7 @@ metadata:
   labels:
     app: postgres
 data:
-  POSTGRES_DB: postgresdb
+  POSTGRES_DB: go-api
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
 
