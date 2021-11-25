@@ -33,7 +33,7 @@ spec:
           image: savchenkoroman/go-api:latest
           volumeMounts:
             - name: env-volume
-              mountPath: /env
+              mountPath: /tmp/.env-go-api
       volumes:
         - name: env-volume
           configMap:
