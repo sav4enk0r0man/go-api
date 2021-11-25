@@ -8,8 +8,8 @@ steps:
     settings:
       repo: savchenkoroman/go-api
       tags: 
-        - "${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}"
-        - "latest"
+        - ${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}
+        - latest
       username:
         from_secret: DOCKER_USERNAME
       password:
