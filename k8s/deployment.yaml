@@ -9,7 +9,7 @@ data:
     DB_PORT=5432
     DB_USER=postgres
     DB_PASSWORD=postgres
-    DB_NAME=postgresdb
+    DB_NAME=go-api-db
 
 ---
 apiVersion: apps/v1
