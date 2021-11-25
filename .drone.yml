@@ -7,7 +7,9 @@ steps:
     image: plugins/docker
     settings:
       repo: savchenkoroman/go-api
-      tags:  [ "${DRONE_COMMIT_SHA:0:8}","latest" ]
+      tags: 
+        - "${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}"
+        - "latest"
       username:
         from_secret: DOCKER_USERNAME
       password:
