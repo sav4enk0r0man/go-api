@@ -28,7 +28,9 @@ steps:
         from_secret: K8S_TOKEN
     commands:
       - kubectl apply -f k8s/postgres-deployment.yaml
+      - kubectl wait deploy/postgres --for condition=available
       - kubectl apply -f k8s/deployment.yaml
+      - kubectl wait deploy/go-api --for condition=available
 
 volumes:
 - name: dockersock

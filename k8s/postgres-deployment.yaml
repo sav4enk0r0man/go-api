@@ -14,6 +14,7 @@ spec:
     - ReadWriteMany
   hostPath:
     path: "/mnt/data"
+
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -28,6 +29,19 @@ spec:
   resources:
     requests:
       storage: 5Gi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
 ---
 apiVersion: apps/v1
 kind: Deployment
